@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="img/png" href="img/icon.png"> 
+    <title>calculator</title>
+    <style>
+        .calculator{
+            background-color: gainsboro;
+            width: 300px;height: 12cm;
+            padding: 15px;
+            position: absolute;
+            top: 50%;left: 50%;
+            transform: translate(-50% ,-50%);
+            border-radius: 10px;
+            box-shadow: 0 6px 0 #a1a1a1;
+        }
+        .result{
+            background-color: #cecfce;
+            color: #3b3b3b;
+            margin: 8px 0 20px 10px;
+            width: 90%;
+            height: 50px;
+            line-height: 50px;
+            text-align: right;
+            font-size: 35px;
+            padding-right: 10px;
+            overflow: hidden;
+            box-shadow: inset 0 0 6px #a1a1a1;
+        }
+        ul{
+            padding: 0;margin: 0;
+        }
+        ul li{
+            list-style: none;font-size: xx-large;text-align: center;
+            padding: 10px;width: 15%;
+            background-color: #4e4e4e;
+            float: left;
+            margin: 5px;
+            cursor: pointer;
+            border-radius: 50px;
+            color: whitesmoke;
+            box-shadow: 0 7px 0 white,inset 0 2px 0 #a1a1a1;
+        }
+        ul li:active{
+            top: 5px;position: relative;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.75);
+        }
+        ul li:nth-child(16){
+            height: 95px;
+            line-height: 95px;
+        }
+        ul li:last-child{
+            margin-top: -52px;
+            width: 65%;
+        }
+        .sign{
+            font-size: 17px;
+            color: rosybrown;
+            text-align: right;
+            position: relative;
+            top: 20px;right: 15px;
+            z-index: -1;
+        }
+    </style>
+</head>
+<body>
+   <div class="calculator">
+       <div class="result">0</div>
+       <ul>
+           <li>c</li>
+           <li>*</li>
+           <li>/</li>
+           <li>.</li>
+           <li>7</li>
+           <li>8</li>
+           <li>9</li>
+           <li>+</li>
+           <li>4</li>
+           <li>5</li>
+           <li>6</li>
+           <li>-</li>
+           <li>1</li>
+           <li>2</li>
+           <li>3</li>
+           <li>=</li>
+           <li>0</li>
+       </ul>
+       <div class="sign">calculator by SEDHU</div>
+   </div>
+   <script>
+       const $lis=document.querySelectorAll("ul li")
+        $lis.forEach((node)=>{
+           node.addEventListener("mousedown",function(event){
+               event.preventDefault()
+               const value=node.innerText.trim()
+               //console.log(value)
+               const $result=document.querySelector(".result") 
+               const resulttext=$result.innerText.trim()
+               if(resulttext=="0"|| resulttext=="undefined" ||resulttext=="Infinity"){
+                   $result.innerText=""
+               }
+               
+               if(value=="="){
+                   let soul=eval($result.innerText.trim())
+                   $result.innerText=soul
+                   return true                   
+               }          
+               
+               if(value.toLowerCase()=="c"){
+                   $result.innerText=''
+                   return true
+               }
+               $result.append(value)
+           })
+       })
+   </script>
+    
+</body>
+</html>
